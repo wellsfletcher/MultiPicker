@@ -71,6 +71,8 @@ public struct MultiPicker<Label: View, SelectionValue: Hashable & CustomStringCo
                         }
                     }
                 }
+            case .none:
+                Spacer()
             }
         }
     }
@@ -398,12 +400,24 @@ struct MultiPicker_Previews: PreviewProvider {
                                 .mpTag($0)
                         }
                     }
-                    MultiPicker("Multi", selection: multiSelection as Binding<Set<String>>) {
+                    MultiPicker("Multi (plainText)", selection: multiSelection as Binding<Set<String>>) {
                         ForEach(choices.wrappedValue, id: \.self) {
                             Text("\($0)")
                                 .mpTag($0)
                         }
-                    }
+                    }.choiceRepresentationStyle(.plainText)
+                    MultiPicker("Multi (rich)", selection: multiSelection as Binding<Set<String>>) {
+                        ForEach(choices.wrappedValue, id: \.self) {
+                            Text("\($0)")
+                                .mpTag($0)
+                        }
+                    }.choiceRepresentationStyle(.rich)
+                    MultiPicker("Multi (none)", selection: multiSelection as Binding<Set<String>>) {
+                        ForEach(choices.wrappedValue, id: \.self) {
+                            Text("\($0)")
+                                .mpTag($0)
+                        }
+                    }.choiceRepresentationStyle(.none)
                     MultiPicker("One or None", selection: oneOrNoneSelection) {
                         ForEach(choices.wrappedValue, id: \.self) {
                             Text("\($0)")

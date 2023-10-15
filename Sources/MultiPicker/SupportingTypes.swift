@@ -33,6 +33,8 @@ public enum ChoiceRepresentationStyle {
     case plainText
     /// The picker will display the view(s) of the selected choice(s).
     case rich
+    /// The picker won't display a preview of the selected choice(s).
+    case none
 }
 
 
